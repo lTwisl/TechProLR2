@@ -36,19 +36,19 @@ vector<double> IntegratedNavigationSystem::measure_acc()
 //    return measures;
 //}
 
-//vector<double> IntegratedNavigationSystem::measure_gyro()
-//{
-//    vector<double> measures;
-//    for(int i = 0; i < _allSensors.size(); ++i)
-//    {
-//        if (typeid(_allSensors[i]) == typeid(Gyro))
-//        {
-//            measures.push_back(_allSensors[i].measure());
-//        }
-//    }
-//
-//    return measures;
-//}
+vector<double> IntegratedNavigationSystem::measure_gyro()
+{
+    vector<double> measures;
+    for(size_t i = 0; i < _allSensors.size(); ++i)
+    {
+        if (_allSensors[i]->name == "Gyroscop")
+        {
+            measures.push_back(_allSensors[i]->measure());
+        }
+    }
+
+    return measures;
+}
 
 void IntegratedNavigationSystem::list_sensors()
 {
