@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Gyroscop::Gyroscop()
+Gyroscop::Position()
 {
     name = "Position";
     measurement_unit = "метр";
@@ -14,7 +14,7 @@ Gyroscop::Gyroscop()
     maxValue = 15;
 }
 
-double Gyroscop::measure()
+double Position::measure()
 {
     random_device rd;
     mt19937 e2(rd());
