@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Gyroscop::Position()
+Position::Position()
 {
     name = "Position";
     measurement_unit = "метр";
