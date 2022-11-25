@@ -76,7 +76,7 @@ public:
     Sensor();
     virtual double measure();
 };
-...
+```
 #pragma once
 
 #include "Sensor.h"
@@ -87,9 +87,9 @@ public:
     Position();
     double measure() override;
 };
-...
+```
 b)	Далее создаем класс “Навигационной системы “, в котором будут храниться наши созданные датчики, а также будет реализован разный функционал позволяющий добавлять и выводить информацию.
-...
+```
 #pragma once
 
 #include "Sensor.h"
@@ -100,9 +100,9 @@ public:
     Position();
     double measure() override;
 };
-...
+```
 c) Напишем реализацию  функции “main”.
-...
+```
 int main(int argc, char* argv[])
 {
     IntegratedNavigationSystem ins;
@@ -136,11 +136,11 @@ int main(int argc, char* argv[])
 
     return 0;
 }
-...
+```
 4) Формируем Makefile.
-...
+```
 g++ -Wall -Werror main.cpp Sensor.cpp Acceleration.cpp Gyroscop.cpp Position.cpp IntegratedNavigationSystem.cpp -o TestMake
-...
+```
 5) Собираем и компилируем проект.
 
 Вывод:
