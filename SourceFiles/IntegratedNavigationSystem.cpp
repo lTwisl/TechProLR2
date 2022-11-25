@@ -22,19 +22,19 @@ vector<double> IntegratedNavigationSystem::measure_acc()
    return measures;
 }
 
-//vector<double> IntegratedNavigationSystem::measure_position()
-//{
-//    vector<double> measures;
-//    for(int i = 0; i < _allSensors.size(); ++i)
-//    {
-//        if (typeid(_allSensors[i]) == typeid(PosSensor))
-//        {
-//            measures.push_back(_allSensors[i].measure());
-//        }
-//    }
-//
-//    return measures;
-//}
+vector<double> IntegratedNavigationSystem::measure_position()
+{
+   vector<double> measures;
+   for(size_t i = 0; i < _allSensors.size(); ++i)
+   {
+       if (_allSensors[i]->name == "Position")
+       {
+           measures.push_back(_allSensors[i]->measure());
+       }
+   }
+
+   return measures;
+}
 
 vector<double> IntegratedNavigationSystem::measure_gyro()
 {
