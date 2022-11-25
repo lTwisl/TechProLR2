@@ -1,4 +1,4 @@
-Лабораторная работа №2
+# Лабораторная работа №2
 
 Диспицлина: "Технологии программирования"
 
@@ -63,9 +63,84 @@ readme.md
 3) Реализация проекта и его архитектуры: 
 a)	Будет создан класс “Сенсор” на основе  которого далее будут созданы три датчика “Гироскоп”, “Акселерометр”  и “Позиции”. Каждым датчиком занимается определенный участник. Позиционный датчик - Виктор, Гироскоп - Кирилл, Акселерометр - Александр. Вячеслав является тимлидом группы и создает программу для подключения датчиков и .h файл для инициализации 
 входных значений датчиков.
+...
+class Sensor
+{
+public:
+    string name;
+    string measurement_unit;
+
+    double minValue;
+    double maxValue;
+
+    Sensor();
+    virtual double measure();
+};
+...
+#pragma once
+
+#include "Sensor.h"
+
+class Position : public Sensor
+{
+public:
+    Position();
+    double measure() override;
+};
+...
 b)	Далее создаем класс “Навигационной системы “, в котором будут храниться наши созданные датчики, а также будет реализован разный функционал позволяющий добавлять и выводить информацию.
+...
+#pragma once
+
+#include "Sensor.h"
+
+class Position : public Sensor
+{
+public:
+    Position();
+    double measure() override;
+};
+...
 c) Напишем реализацию  функции “main”.
+...
+int main(int argc, char* argv[])
+{
+    IntegratedNavigationSystem ins;
+    Acceleration a;
+    Acceleration a1;
+    Gyroscop g;
+    Position p;
+
+    ins.add_sensor(a);
+    ins.add_sensor(a1);
+    ins.add_sensor(g);
+    ins.add_sensor(p);
+
+    for(auto value : ins.measure_acc())
+    {
+        cout << "acc: ";
+        cout << value << endl;
+    }
+
+    for(auto value : ins.measure_gyro())
+    {
+        cout << "gyro: ";
+        cout << value << endl;
+    }
+
+    for(auto value : ins.measure_position())
+    {
+        cout << "pos: ";
+        cout << value << endl;
+    }
+
+    return 0;
+}
+...
 4) Формируем Makefile.
+...
+g++ -Wall -Werror main.cpp Sensor.cpp Acceleration.cpp Gyroscop.cpp Position.cpp IntegratedNavigationSystem.cpp -o TestMake
+...
 5) Собираем и компилируем проект.
 
 Вывод:
