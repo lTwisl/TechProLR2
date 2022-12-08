@@ -35,6 +35,6 @@ int main(int argc, char* argv[])
         cout << "pos: ";
         cout << value << endl;
     }
-
+    ins.list_sensors();
     return 0;
 }
