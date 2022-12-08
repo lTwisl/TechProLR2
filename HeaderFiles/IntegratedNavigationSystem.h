@@ -5,6 +5,8 @@
 
 #include "Sensor.h"
 #include "Acceleration.h"
+#include "Gyroscop.h"
+#include "Position.h"
 
 using namespace std;
 
