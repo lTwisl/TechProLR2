@@ -13,9 +13,10 @@ vector<double> IntegratedNavigationSystem::measure_acc()
 
    for(size_t i = 0; i < _allSensors.size(); ++i)
    {
-        if(_allSensors[i]->name == "Acceleration")
+        if(typeid(*_allSensors[i]) == typeid(Acceleration))
         {
-            measures.push_back(_allSensors[i]->measure());
+            Acceleration* a = static_cast<Acceleration*>(_allSensors[i]);
+            measures.push_back(a->measure());
         }
    }
 
@@ -27,9 +28,13 @@ vector<double> IntegratedNavigationSystem::measure_position()
    vector<double> measures;
    for(size_t i = 0; i < _allSensors.size(); ++i)
    {
-       if (_allSensors[i]->name == "Position")
+           // cout <<"vfff"<<endl;
+             //       cout <<typeid(*_allSensors[i]).name()<<endl;
+                //    cout <<typeid(Position*).name()<<endl;
+       if (typeid(*_allSensors[i]) == typeid(Position))
        {
-           measures.push_back(_allSensors[i]->measure());
+            Position* a = static_cast<Position*>(_allSensors[i]);
+            measures.push_back(a->measure());
        }
    }
 
@@ -41,9 +46,10 @@ vector<double> IntegratedNavigationSystem::measure_gyro()
     vector<double> measures;
     for(size_t i = 0; i < _allSensors.size(); ++i)
     {
-        if (_allSensors[i]->name == "Gyroscop")
+        if (typeid(*_allSensors[i]) == typeid(Gyroscop))
         {
-            measures.push_back(_allSensors[i]->measure());
+            Gyroscop* a = static_cast<Gyroscop*>(_allSensors[i]);
+            measures.push_back(a->measure());
         }
     }
 
