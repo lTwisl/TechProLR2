@@ -22,18 +22,21 @@ int main(int argc, char* argv[])
     {
         cout << "acc: ";
         cout << value << endl;
+        cout << a1.measurement_unit << endl;
     }
 
     for(auto value : ins.measure_gyro())
     {
         cout << "gyro: ";
         cout << value << endl;
+        cout << g.measurement_unit << endl;
     }
 
     for(auto value : ins.measure_position())
     {
         cout << "pos: ";
         cout << value << endl;
+        cout << p.measurement_unit << endl;
     }
     ins.list_sensors();
     return 0;

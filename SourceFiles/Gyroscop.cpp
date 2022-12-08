@@ -9,7 +9,7 @@ using namespace std;
 Gyroscop::Gyroscop()
 {
     name = "Gyroscop";
-    measurement_unit = "град";
+    measurement_unit = "Orient and AngSpeed";
     minValue = 0;
     maxValue = 1;
 }

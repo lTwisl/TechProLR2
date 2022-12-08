@@ -9,7 +9,7 @@ using namespace std;
 Position::Position()
 {
     name = "Position";
-    measurement_unit = "метр";
+    measurement_unit = "Meters";
     minValue = 0;
     maxValue = 15;
 }
