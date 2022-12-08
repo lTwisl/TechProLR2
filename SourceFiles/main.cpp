@@ -8,7 +8,7 @@ using namespace std;
 int main(int argc, char* argv[])
 {
     IntegratedNavigationSystem ins;
-    Acceleration a;
+    Acceleration a("accelerometr");
     Acceleration a1;
     Gyroscop g;
     Position p;

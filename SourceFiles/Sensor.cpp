@@ -11,6 +11,14 @@ Sensor::Sensor()
     maxValue = 10;
 }
 
+Sensor::Sensor(string name_init)
+{
+    name = name_init;
+    measurement_unit = "null";
+    minValue = 0;
+    maxValue = 10;
+}
+
 double Sensor::measure()
 {
     cout << "Number" << endl;

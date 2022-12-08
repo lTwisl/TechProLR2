@@ -14,6 +14,14 @@ Acceleration::Acceleration()
     maxValue = 1;
 }
 
+Acceleration::Acceleration("Acceleration")
+{
+    measurement_unit = "m/c^2";
+    minValue = 0;
+    maxValue = 1;
+}
+
+
 double Acceleration::measure()
 {
     random_device rd;

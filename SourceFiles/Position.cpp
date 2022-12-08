@@ -14,6 +14,13 @@ Position::Position()
     maxValue = 15;
 }
 
+Position::Position("Position")
+{
+    name = name_init;
+    measurement_unit = "Meters";
+    minValue = 0;
+    maxValue = 15;
+}
 double Position::measure()
 {
     random_device rd;

@@ -14,6 +14,13 @@ Gyroscop::Gyroscop()
     maxValue = 1;
 }
 
+Gyroscop::Gyroscop("Gyroscop")
+{
+    measurement_unit = "rad/sec";
+    minValue = 0;
+    maxValue = 1;
+}
+
 double Gyroscop::measure()
 {
     random_device rd;

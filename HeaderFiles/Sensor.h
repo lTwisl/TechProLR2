@@ -14,5 +14,6 @@ public:
     double maxValue;
 
     Sensor();
+    Sensor(string name_init);
     virtual double measure();
 };
