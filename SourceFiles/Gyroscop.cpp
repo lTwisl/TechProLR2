@@ -3,6 +3,7 @@
 #include <random>
 
 #include "../HeaderFiles/Gyroscop.h"
+#include "./Profiler.cpp"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ Gyroscop::Gyroscop(string name_init)
 
 double Gyroscop::measure()
 {
+    Profiler pro("Gyroscop");
     random_device rd;
     mt19937 e2(rd());
     uniform_real_distribution<> dist(minValue, maxValue);
