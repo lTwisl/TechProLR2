@@ -2,6 +2,8 @@
 
 #include "../HeaderFiles/IntegratedNavigationSystem.h"
 
+#include "./Profiler.cpp"
+
 void IntegratedNavigationSystem::add_sensor(Sensor& sensor)
 {
     _allSensors.push_back(&sensor);
@@ -9,6 +11,7 @@ void IntegratedNavigationSystem::add_sensor(Sensor& sensor)
 
 vector<double> IntegratedNavigationSystem::measure_acc()
 {
+    Profiler p_acc("time ins::measure_acc");
    vector<double> measures;
 
    for(size_t i = 0; i < _allSensors.size(); ++i)
@@ -25,12 +28,10 @@ vector<double> IntegratedNavigationSystem::measure_acc()
 
 vector<double> IntegratedNavigationSystem::measure_position()
 {
+    Profiler p_acc("time ins::measure_position");
    vector<double> measures;
    for(size_t i = 0; i < _allSensors.size(); ++i)
    {
-           // cout <<"vfff"<<endl;
-             //       cout <<typeid(*_allSensors[i]).name()<<endl;
-                //    cout <<typeid(Position*).name()<<endl;
        if (typeid(*_allSensors[i]) == typeid(Position))
        {
             Position* a = static_cast<Position*>(_allSensors[i]);
@@ -43,6 +44,7 @@ vector<double> IntegratedNavigationSystem::measure_position()
 
 vector<double> IntegratedNavigationSystem::measure_gyro()
 {
+    Profiler p_acc("time ins::measure_gyro");
     vector<double> measures;
     for(size_t i = 0; i < _allSensors.size(); ++i)
     {
