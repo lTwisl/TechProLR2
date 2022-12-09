@@ -64,50 +64,122 @@ readme.md
 a)	Будет создан класс “Сенсор” на основе  которого далее будут созданы три датчика “Гироскоп”, “Акселерометр”  и “Позиции”. Каждым датчиком занимается определенный участник. Позиционный датчик - Виктор, Гироскоп - Кирилл, Акселерометр - Александр. Вячеслав является тимлидом группы и создает программу для подключения датчиков и .h файл для инициализации 
 входных значений датчиков.
 ```
-class Sensor
+Sensor::Sensor()
 {
-public:
-    string name;
-    string measurement_unit;
+    name = "Sensor";
+    measurement_unit = "null";
+    minValue = 0;
+    maxValue = 10;
+}
 
-    double minValue;
-    double maxValue;
+Sensor::Sensor(string name_init)
+{
+    name = name_init;
+    measurement_unit = "null";
+    minValue = 0;
+    maxValue = 10;
+}
 
-    Sensor();
-    virtual double measure();
-};
+double Sensor::measure()
+{
+    cout << "Number" << endl;
+    return 0;
+}
 ```
 ```
-#pragma once
-
-#include "Sensor.h"
-
-class Position : public Sensor
+Position::Position()
 {
-public:
-    Position();
-    double measure() override;
-};
+    name = "Position";
+    measurement_unit = "Meters";
+    minValue = 0;
+    maxValue = 15;
+}
+
+Position::Position(string name_init)
+{
+    name = name_init;
+    measurement_unit = "Meters";
+    minValue = 0;
+    maxValue = 15;
+}
+double Position::measure()
+{
+    random_device rd;
+    mt19937 e2(rd());
+    uniform_real_distribution<> dist(minValue, maxValue);
+    return dist(e2);
+}
 ```
 b)	Далее создаем класс “Навигационной системы “, в котором будут храниться наши созданные датчики, а также будет реализован разный функционал позволяющий добавлять и выводить информацию.
 ```
-#pragma once
-
-#include "Sensor.h"
-
-class Position : public Sensor
+void IntegratedNavigationSystem::add_sensor(Sensor& sensor)
 {
-public:
-    Position();
-    double measure() override;
-};
+    _allSensors.push_back(&sensor);
+}
+
+vector<double> IntegratedNavigationSystem::measure_acc()
+{
+   vector<double> measures;
+
+   for(size_t i = 0; i < _allSensors.size(); ++i)
+   {
+        if(typeid(*_allSensors[i]) == typeid(Acceleration))
+        {
+            Acceleration* a = static_cast<Acceleration*>(_allSensors[i]);
+            measures.push_back(a->measure());
+        }
+   }
+
+   return measures;
+}
+
+vector<double> IntegratedNavigationSystem::measure_position()
+{
+   vector<double> measures;
+   for(size_t i = 0; i < _allSensors.size(); ++i)
+   {
+           // cout <<"vfff"<<endl;
+             //       cout <<typeid(*_allSensors[i]).name()<<endl;
+                //    cout <<typeid(Position*).name()<<endl;
+       if (typeid(*_allSensors[i]) == typeid(Position))
+       {
+            Position* a = static_cast<Position*>(_allSensors[i]);
+            measures.push_back(a->measure());
+       }
+   }
+
+   return measures;
+}
+
+vector<double> IntegratedNavigationSystem::measure_gyro()
+{
+    vector<double> measures;
+    for(size_t i = 0; i < _allSensors.size(); ++i)
+    {
+        if (typeid(*_allSensors[i]) == typeid(Gyroscop))
+        {
+            Gyroscop* a = static_cast<Gyroscop*>(_allSensors[i]);
+            measures.push_back(a->measure());
+        }
+    }
+
+    return measures;
+}
+
+void IntegratedNavigationSystem::list_sensors()
+{
+    for(size_t i = 0; i < _allSensors.size(); ++i)
+    {
+        std::cout << _allSensors[i]->name << std::endl;
+    }
+}
 ```
 c) Напишем реализацию  функции “main”.
 ```
 int main(int argc, char* argv[])
 {
     IntegratedNavigationSystem ins;
-    Acceleration a;
+    Acceleration a("accelerometr");
     Acceleration a1;
     Gyroscop g;
     Position p;
@@ -120,21 +192,22 @@ int main(int argc, char* argv[])
     for(auto value : ins.measure_acc())
     {
         cout << "acc: ";
-        cout << value << endl;
+        cout << value << " " << a1.measurement_unit << endl;
     }
 
     for(auto value : ins.measure_gyro())
     {
         cout << "gyro: ";
-        cout << value << endl;
+        cout << value << " " <<  g.measurement_unit << endl;
     }
 
     for(auto value : ins.measure_position())
     {
         cout << "pos: ";
-        cout << value << endl;
+        cout << value << " " << p.measurement_unit << endl;
     }
-
+    cout <<"---------------------------------------------------"<<endl;
+    ins.list_sensors();
     return 0;
 }
 ```
@@ -143,7 +216,18 @@ int main(int argc, char* argv[])
 g++ -Wall -Werror main.cpp Sensor.cpp Acceleration.cpp Gyroscop.cpp Position.cpp IntegratedNavigationSystem.cpp -o TestMake
 ```
 5) Собираем и компилируем проект.
-
+Результат вывода собранного проекта:
+```
+acc: 0.213226 m/c^2
+acc: 0.725858 m/c^2
+gyro: 0.986003 rad/sec
+pos: 4.4061 Meters
+---------------------------------------------------
+Acceleration
+Acceleration
+Gyroscop
+Position
+```
 Вывод:
 В ходе лабараторной работы мы приобрели и отработали новые навыки, такие как:
 1. Повысили навыки совместной работы в команде 
