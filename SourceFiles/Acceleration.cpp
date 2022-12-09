@@ -14,8 +14,9 @@ Acceleration::Acceleration()
     maxValue = 1;
 }
 
-Acceleration::Acceleration("Acceleration")
+Acceleration::Acceleration(string name_init)
 {
+    name = name_init;
     measurement_unit = "m/c^2";
     minValue = 0;
     maxValue = 1;

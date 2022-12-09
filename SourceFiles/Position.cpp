@@ -14,7 +14,7 @@ Position::Position()
     maxValue = 15;
 }
 
-Position::Position("Position")
+Position::Position(string name_init)
 {
     name = name_init;
     measurement_unit = "Meters";

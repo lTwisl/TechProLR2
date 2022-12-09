@@ -14,8 +14,9 @@ Gyroscop::Gyroscop()
     maxValue = 1;
 }
 
-Gyroscop::Gyroscop("Gyroscop")
+Gyroscop::Gyroscop(string name_init)
 {
+    name = name_init;
     measurement_unit = "rad/sec";
     minValue = 0;
     maxValue = 1;
