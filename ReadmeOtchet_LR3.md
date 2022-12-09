@@ -161,23 +161,27 @@ double Position::measure()
 Собираем программу через консоль PowerShell используя компилятор установленный через MinGW. При компиляции 
 используем флаги -Wall и -Werror.
 ```
-Time acc::measure: 818
-Time acc::measure: 20
-time ins::measure_acc: 1564
-acc: 0.640795 m/c^2
-acc: 0.332499 m/c^2
-Time gyro::measure: 19
-time ins::measure_gyro: 283
-gyro: 0.26956 rad/sec
-Time pos::measure: 18
-time ins::measure_position: 218
-pos: 11.9039 Meters
+time ins::addSensor: 3
+time ins::addSensor: 2
+time ins::addSensor: 1
+time ins::addSensor: 0
+Time acc::measure: 786
+Time acc::measure: 19
+time ins::measure_acc: 1341
+acc: 0.53521 m/c^2
+acc: 0.510232 m/c^2
+Time gyro::measure: 18
+time ins::measure_gyro: 281
+gyro: 0.383087 rad/sec
+Time pos::measure: 19
+time ins::measure_position: 276
+pos: 11.6976 Meters
 ---------------------------------------------------
 accelerometr
 Acceleration
 Gyroscop
 Position
-main: 10855
+main: 6454
 ```
 В данном фрагменте работы программы последние строчки показывают время работы каждого профилируемого cpp файла
 
@@ -188,21 +192,26 @@ all:
 ```
 Провели профилировку созданных нами во второй лабораторной работе классов Навигационной системы, результаты вывели в консоль:
 ```
-Time acc::measure: 818
-Time acc::measure: 20
-time ins::measure_acc: 1564
+time ins::addSensor: 3
+time ins::addSensor: 2
+time ins::addSensor: 1
+time ins::addSensor: 0
 
-Time gyro::measure: 19
-time ins::measure_gyro: 283
+Time acc::measure: 786
+Time acc::measure: 19
+time ins::measure_acc: 1341
 
-Time pos::measure: 18
-time ins::measure_position: 218
+Time gyro::measure: 18
+time ins::measure_gyro: 281
+
+Time pos::measure: 19
+time ins::measure_position: 276
 ---------------------------------------------------
 accelerometr
 Acceleration
 Gyroscop
 Position
-main: 10855
+main: 6454
 ```
 В данном отрывке видно, видно время работы различных методов класса Интегральной навигационной системы. В результате профилировки можно заметить, что быстрее всего выполняются методы датчиков (measure), а дольше всего выполнялся метод main, который является точкой входа в программу. В нем используются все возможности Навигационной системы, поэтому данный метод является самым нагруженным.
 
