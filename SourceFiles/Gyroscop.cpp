@@ -25,7 +25,7 @@ Gyroscop::Gyroscop(string name_init)
 
 double Gyroscop::measure()
 {
-    Profiler pro("Gyroscop");
+    Profiler pro("Time gyro::measure");
     random_device rd;
     mt19937 e2(rd());
     uniform_real_distribution<> dist(minValue, maxValue);
