@@ -8,11 +8,13 @@ class Profiler
 {
 private:
     chrono::steady_clock::time_point start_time;
+    string name;
 
 public:
     Profiler(string name)
     {
         start_time = chrono::steady_clock::now();
+        this->name = name;
     }
 
     ~Profiler()

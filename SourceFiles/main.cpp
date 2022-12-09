@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Profiler pp;
+    Profiler pp("main");
     IntegratedNavigationSystem ins;
     Acceleration a("accelerometr");
     Acceleration a1;
