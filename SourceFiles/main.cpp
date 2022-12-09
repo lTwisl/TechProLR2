@@ -3,10 +3,13 @@
 
 #include "../HeaderFiles/IntegratedNavigationSystem.h"
 
+#include "./Profiler.cpp"
+
 using namespace std;
 
 int main(int argc, char* argv[])
 {
+    Profiler pp;
     IntegratedNavigationSystem ins;
     Acceleration a("accelerometr");
     Acceleration a1;
