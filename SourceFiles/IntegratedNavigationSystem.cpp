@@ -6,6 +6,7 @@
 
 void IntegratedNavigationSystem::add_sensor(Sensor& sensor)
 {
+    Profiler p_add("time ins::addSensor");
     _allSensors.push_back(&sensor);
 }
 
