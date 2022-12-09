@@ -20,7 +20,7 @@ public:
     ~Profiler()
     {
         auto end_time = chrono::steady_clock::now();
-        auto delta_time = chrono::duration_cast<chrono::milliseconds>(end_time - start_time).count();
+        auto delta_time = chrono::duration_cast<chrono::microseconds>(end_time - start_time).count();
         cout << name << ": " << delta_time << endl;
     }
 };
