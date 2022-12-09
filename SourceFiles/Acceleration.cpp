@@ -28,7 +28,7 @@ Acceleration::Acceleration(string name_init)
 
 double Acceleration::measure()
 {
-    Profiler pro("Accelerometer");
+    Profiler pro("Time acc::measure");
     random_device rd;
     mt19937 e2(rd());
     uniform_real_distribution<> dist(minValue, maxValue);
