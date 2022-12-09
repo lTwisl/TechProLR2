@@ -3,8 +3,11 @@
 #include <random>
 
 #include "../HeaderFiles/Acceleration.h"
+#include "./Profiler.cpp"
 
 using namespace std;
+
+
 
 Acceleration::Acceleration()
 {
@@ -25,8 +28,10 @@ Acceleration::Acceleration(string name_init)
 
 double Acceleration::measure()
 {
+    Profiler pro("Accelerometer");
     random_device rd;
     mt19937 e2(rd());
     uniform_real_distribution<> dist(minValue, maxValue);
     return dist(e2);
+
 }
